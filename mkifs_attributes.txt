@@ -1,0 +1,28 @@
+#Porsche PCM4/MIB2 ifs-root (stage 2) attributes file
+#Before packing FS: EXPORT QNX_TARGET="/"
+#Command to pack: mkxfs -t ifs -nn -o ./ -r / attributes.txt /unpacked_fs /packed_fs.ifs
+
+[-followlink]        #Do not resolve links
+[compress=2]         #LZO Compression
+[-bigendian]         #Little Endian (ARMLE)
+[-autolink]          #Do not auto link shared objects
+[perms=777]          #chmod 777
+[uid=0 gid=0]        #chown root:root
+
+#You can add a script to be executed after mount here, one line only
+#[+script] .script = {
+#touch /dev/shmem/AudioFadedIn; touch /dev/shmem/production_mode
+#}
+
+#Symlinks. Add lines here to match your dumpifs symlinks
+#[type=link] dest_file=source_file
+[type=link] /lib/SPC_configuration.so=/lib/libSPC_configuration.so
+[type=link] /lib/AudioConfig_ARM.so=/lib/libAudioConfig_ARM.so
+[type=link] /lib/AudioConfig_DSP.so=/lib/libAudioConfig_DSP.so
+[type=link] /usr/bin/flashunlock=/usr/bin/flashlock
+[type=link] /usr/bin/libi2c-inic-master.so=/lib/libi2c-inic-master.so.1.0
+[type=link] /lib/librdshbfpga.so.1.0.0=/lib/librdshbfpga.so
+[type=link] /lib/libSysMoCCAFrameworkSharedSo.so=/lib/libSysMoCCAFrameworkSharedSo.so.6
+[type=link] /lib/AudioConfig_DSP.so=/lib/libAudioConfig_DSP.so
+[type=link] /lib/liba2itodspipc.so=/lib/liba2itodspipc.so.1
+
